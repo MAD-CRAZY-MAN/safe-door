@@ -1,6 +1,6 @@
 import socket
-host = '172.30.1.27'
-port = 20000
+host = '192.168.137.177'
+port = 20003
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print('created')
@@ -11,6 +11,6 @@ print('binded')
 server_socket.listen(1)
 client_socket, addr = server_socket.accept()
 print('connect')
-
-data = client_socket.recv(65545)
-print("recieve Data: ", data.decode())
+while 1:
+    data = client_socket.recv(65545)
+    print("recieve Data: ", data.decode())
