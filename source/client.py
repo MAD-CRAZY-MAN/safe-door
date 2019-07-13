@@ -10,7 +10,7 @@ TCP_IP = '172.30.1.31' # server socket`s IP
 TCP_PORT = 5001        # server socket's PORT
 
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Create socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Create socket, IP4v
 sock.connect((TCP_IP, TCP_PORT)) # connect socket
 
 encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90] # encode jpg, img quality value
