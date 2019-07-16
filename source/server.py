@@ -17,8 +17,8 @@ def init():
     global TCP_IP, TCP_PORT
     global sock, client
     
-    TCP_IP = '192.168.137.214' # server socket`s IP
-    TCP_PORT = 5001       # server socket`s PORT
+    TCP_IP = '192.168.137.168' # server socket`s IP
+    TCP_PORT = 20000       # server socket`s PORT
     
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Create socket 
     sock.bind((TCP_IP, TCP_PORT)) # bind socket to IP, port
@@ -47,18 +47,18 @@ while True:
         decimg = cv2.imdecode(data, 1) # decoding
 
         cv2.namedWindow('CCTV', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('CCTV', 2510, 1000)
+        cv2.resizeWindow('CCTV', 2500, 1000)
         cv2.imshow('CCTV', decimg) # show image
         cv2.moveWindow('CCTV', 0, 0)
-        cv2.waitKey(0)
-        
-        now = datetime.now()
-        time = now.strftime("%H:%M:%S")
-        time =str(time)
-        name = 'C:/' + time + '.jpg'
-
-        cv2.imwrite(name, decimg) #이미지 저장
+        cv2.waitKey(0) # 아무키나 누르
         cv2.destroyAllWindows()
+        now = datetime.now()
+      
+        Hour = now.strftime("%H")
+        Min = now.strftime("%M")
+        Sec = now.strftime("%S")
+        cv2.imwrite("../../../list/%02d-%02d-%02d.jpg" % (int(Hour), int(Min), int(Sec)), decimg) # 바탕화면/list에 시간-분-초.jpg로 저장
+        
         
 
 sock.close()
