@@ -1,11 +1,13 @@
 #include <Adafruit_Fingerprint.h>
 #include <SoftwareSerial.h>
+#include <Servo.h>
+Servo servo;
+int value = 0;
 SoftwareSerial mySerial(2, 3);
-
-int errorCnt = 0;
 
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 void setup() {
+  servo.attach(4);
   Serial.begin(9600);
   while (!Serial);  // For Yun/Leo/Micro/Zero/...
   delay(100);
@@ -19,6 +21,8 @@ void setup() {
   }
 
   finger.getTemplateCount();
+
+  servo.write(value);
 }
 
 void loop() {
@@ -65,22 +69,20 @@ uint8_t getFingerprintID() {
   } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
     return p;
   } else if (p == FINGERPRINT_NOTFOUND) {
-    errorCnt++;
-    if(errorCnt > 1) {
-     Serial.println('1');
-     errorCnt = 0;
-     return p; 
-    }
+    Serial.println('1');
+    value = 0;
+    servo.write(value);
+    return p; 
   } else {
     return p;
   }
-  if(finger.confidence < 50){
-     errorCnt++;
-     return p;  
-  }   
   
   // found a match!
-  errorCnt = 0;
+  value += 90;
+  if(value == 180)
+    value = 0;
+
+  servo.write(value);
 
   return finger.fingerID;
 }
