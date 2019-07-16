@@ -9,10 +9,9 @@ Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 void setup() {
   servo.attach(4);
   Serial.begin(9600);
-  while (!Serial);  // For Yun/Leo/Micro/Zero/...
+  while (!Serial);  
   delay(100);
 
-  // set the data rate for the sensor serial port
   finger.begin(57600);
   
   if (finger.verifyPassword()) {
@@ -46,7 +45,6 @@ uint8_t getFingerprintID() {
   }
 
   // OK success!
-
   p = finger.image2Tz();
   switch (p) {
     case FINGERPRINT_OK:
