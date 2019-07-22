@@ -1,4 +1,3 @@
-# 함수 화 하기, 이미지 저장(시간)
 import socket
 import cv2
 import numpy
@@ -39,9 +38,3 @@ while True:
 
 sock.close() # close socket
 
-'''
-decimg=cv2.imdecode(data,1)
-cv2.imshow('CLIENT',decimg)
-cv2.waitKey(0)
-cv2.destroyAllWindows() 
-'''
