@@ -17,7 +17,7 @@ def init():
     global TCP_IP, TCP_PORT
     global sock, client
     
-    TCP_IP = '192.168.137.168' # server socket`s IP
+    TCP_IP = '192.168.137.10' # server socket`s IP
     TCP_PORT = 20000       # server socket`s PORT
     
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Create socket 
@@ -57,7 +57,7 @@ while True:
         Hour = now.strftime("%H")
         Min = now.strftime("%M")
         Sec = now.strftime("%S")
-        cv2.imwrite("../../../list/%02d-%02d-%02d.jpg" % (int(Hour), int(Min), int(Sec)), decimg) # 바탕화면/list에 시간-분-초.jpg로 저장
+        cv2.imwrite("../../../../list/%02d-%02d-%02d.jpg" % (int(Hour), int(Min), int(Sec)), decimg) # 바탕화면/list에 시간-분-초.jpg로 저장
         
         
 
